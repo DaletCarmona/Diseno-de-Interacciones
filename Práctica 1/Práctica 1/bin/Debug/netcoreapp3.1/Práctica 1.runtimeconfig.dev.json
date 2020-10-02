@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Dalet\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Dalet\\.nuget\\packages"
+    ]
+  }
+}
