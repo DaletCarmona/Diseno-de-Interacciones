@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,18 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryUIPanel;
     public GameObject inventoryTextPanel;
+    private Inventory inventory;
 
     void Start()
     {
+        inventory = FindObjectOfType<Inventory>();
+        if (inventory == null)
+        {
+            return;
+        }
         inventoryUIPanel.SetActive(false);
         inventoryTextPanel.SetActive(false);
-        
+        inventory.onChange += UpdateUI;
     }
 
     
@@ -21,6 +28,23 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryUIPanel.SetActive(!inventoryUIPanel.activeSelf);
             inventoryTextPanel.SetActive(!inventoryTextPanel.activeSelf);
+            UpdateUI();
+        }
+    }
+
+    void UpdateUI()
+    {
+        Slot[] slots = GetComponentsInChildren<Slot>();
+        for(int i = 0; i<slots.Length; i++)
+        {
+            if(i<inventory.items.Count)
+            {
+                slots[i].SetItem(inventory.items[i]);
+            }
+            else 
+            {
+                slots[i].Clear();
+            }
         }
     }
 }
