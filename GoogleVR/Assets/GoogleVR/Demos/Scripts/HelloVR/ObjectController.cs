@@ -37,6 +37,7 @@ namespace GoogleVR.HelloVR
         private Renderer myRenderer;
 
         private Locomotion locomotion;
+        private Interactable inter;
 
         public float triggerInteractionTime = 2f;
 
@@ -47,6 +48,10 @@ namespace GoogleVR.HelloVR
         {
             if (timerRunning)
                 interactionTimer += Time.deltaTime;
+            /*if (inter.item==inter.gazedAt)
+            {
+                PickUp();
+            }*/
             if(interactionTimer > triggerInteractionTime)
             {
                 TeleportPlayer();
@@ -75,7 +80,7 @@ namespace GoogleVR.HelloVR
             }
         }
 
-        /// <summary>Resets this instance and its siblings to their starting positions.</summary>
+       /// <summary>Resets this instance and its siblings to their starting positions.</summary>
         public void Reset()
         {
             int sibIdx = transform.GetSiblingIndex();
@@ -154,6 +159,12 @@ namespace GoogleVR.HelloVR
         {
             if (locomotion != null)
                 locomotion.TeleportPlayer(transform.position);
+        }
+
+        public void PickUp()
+        {
+            if (inter != null)
+                inter.PickUp();
         }
 
     }
