@@ -58,15 +58,15 @@ namespace IBM.Watsson.Examples
         private int _recordingHZ = 22050;
 
         private SpeechToTextService _service;
-        private VoiceCommandProcessor commandProcessor; 
-
+        //private VoiceCommandProcessor commandProcessor; 
+        /*
         void Start()
         {
             LogSystem.InstallDefaultReactors();
             Runnable.Run(CreateService());
             commandProcessor = VoiceCommandProcessor.Instance;
         }
-
+        */
         private IEnumerator CreateService()
         {
             if (string.IsNullOrEmpty(_iamApikey))
